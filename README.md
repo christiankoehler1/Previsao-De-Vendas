@@ -61,7 +61,7 @@ A Rossmann é uma grande rede de drogarias que atua no continente europeu. Recen
     
 &nbsp;       
     
-## 3.1 Metodologia utilizada
+## 3.1 Metodologia de desenvolvimento do projeto
 O método utilizado para o projeto será o CRISP que é um processo cíclico, flexível e ágil, capaz de lidar com problemas complexos envolvendo grande quantidade 
 de dados.
 
@@ -107,13 +107,20 @@ Sendo assim as principais hipóteses levantadas, foram:
 Como resultado, 3 hipóteses foram confirmadas (tabela abaixo):
 
 &nbsp;
-
+![image](https://user-images.githubusercontent.com/66925229/163879052-1931239a-684e-4c98-bd0c-1d4a786c1754.png)
 
   
 &nbsp;
+##  Performance do modelo
+Nessa etapa foram utilizados 04 algoritmos de Machine Learning, sendo eles: Linear Regression, Lasso Regression, Random Forest Regressor e o XGBoost Regressor. 
+Também foi utilizada a técnica de validação cruzada em Time Series para treinar e validar os modelos.
 
-##  Machine Learning
-Nessa etapa foram testados 04 algoritmos de Machine Learning Linear Regression, Lasso Regression, Random Forest Regressor e o XGBoost Regressor.
+
+##### Resultados dos Modelos
+
+&nbsp;
+
+&nbsp;
 
 
 
