@@ -2,18 +2,15 @@
 Esse repositório apresenta scripts referente ao projeto de previsão de vendas de clientes
 
 ***Nota:*** *Esse é um projeto fictício, de qualquer forma muito semelhante ao real problema enfrentado pelas organizações diariamente.*  
-
 &nbsp;
 ## Previsão de Vendas - Rossmann
 &nbsp;
 ![v2-109627-competitividade-entre-aplicativos-como-criar-um-app-util-para-o-usuario-post](https://user-images.githubusercontent.com/66925229/163728091-3c8a6523-b925-4fda-8d21-728be4947247.png)
 
 
-
-
 &nbsp;
 ## 1.0 Problema de negócio
-A Rossmann é uma grande rede de drogarias que atua no continente europeu. Recentemente, o CFO solicitou ao gerente de cada loja para realizar a previsão de vendas nas próximas seis semanas de sua respectiva loja. Ele planeja realizar a reforma das lojas e para isso o orçamento estará condicionado as suas respectivas vendas. Com milhares de gerentes individuais prevendo as vendas a precisão dos resultados poderia acabar comprometida. Devido a isso, foi solicitado que nós como cientista de dados realizássemos essa tarefa.
+A Rossmann é uma grande rede de drogarias que atua no continente europeu. Recentemente, o CFO solicitou aos gerentes de cada loja para realizarem a previsão de vendas das próximas 6 semanas de suas respectivas lojas. Ele planeja realizar a reforma das lojas e para isso o orçamento estará condicionado as suas respectivas vendas. Com milhares de gerentes individuais prevendo as vendas a precisão dos resultados poderia acabar comprometida. Dessa maneira, foi solicitado que nós como cientista de dados realizássemos essa tarefa.
 
 &nbsp;
 ## 2.0 Premissas
@@ -46,18 +43,26 @@ A Rossmann é uma grande rede de drogarias que atua no continente europeu. Recen
 ## 3.0 Planejamento da solução
 
 ### - Produto final: 
-      - Resposta: Construir modelo de ML para realizar previsões de vendas para as próximas 6 semanas por loja em tempo real.
-      - Formato da entrega: Texto com previsão de vendas por loja (valores absolutos)
-      - Local de entrega: Bot no Telegram
+
+  **Resposta:**  Construir modelo de ML para realizar previsões de vendas para as próximas 6 semanas por loja em tempo real.
+  
+  **Formato da entrega:** Texto com previsão de vendas por loja (valores absolutos)
+  
+  **Local de entrega:** Bot no Telegram
         
 ### - Processo:
-      - Passo a passo:
-      - Definição do formato da entrega: Resposta escrita
-      - Decisão do local de entrega: Celular, Tablet ou PC.
+
+  **Passo a passo:** Etapas do CRISP  
+  
+  **Definição do formato da entrega:** Resposta escrita
+  
+  **Decisão do local de entrega:** Celular, Tablet ou PC.
        
 ### - Entrada:
-      - Fonte de dados: recebimento de base de dados arquivo .csv
-      - Ferramentas utilizadas: Python, Heroku, Telegram
+
+  **Fonte de dados:** recebimento de base de dados arquivo .csv
+  
+  **Ferramentas utilizadas:** Python, Heroku, Telegram
     
 &nbsp;       
     
@@ -106,23 +111,95 @@ Sendo assim as principais hipóteses levantadas, foram:
 
 Como resultado, 3 hipóteses foram confirmadas (tabela abaixo):
 
-&nbsp;
-![image](https://user-images.githubusercontent.com/66925229/163879052-1931239a-684e-4c98-bd0c-1d4a786c1754.png)
 
-  
-&nbsp;
+| Hipóteses | Conclusão | Relevância |
+| :---: | :---: | :---: |
+| H1 | Falsa | Baixa |
+| H2 | Falsa | Media |
+| H3 | Falsa | Media |
+| H4 | Falsa | Baixa |
+| H5 |  -    |  -    | 
+| H6 | Falsa | Baixa |
+| H7 | Falsa | Media |
+| H8 | Falsa | Alta |
+| H9 | Falsa | Alta |
+| H10 | Verdadeira | Alta |
+| H11 | Verdadeira | Alta |
+| H12 | Verdadeira | Baixa |
+
+
 ##  Performance do modelo
-Nessa etapa foram utilizados 04 algoritmos de Machine Learning, sendo eles: Linear Regression, Lasso Regression, Random Forest Regressor e o XGBoost Regressor. 
-Também foi utilizada a técnica de validação cruzada em Time Series para treinar e validar os modelos.
+Nessa etapa foram testados 04 algoritmos de Machine Learning, sendo eles: Linear Regression, Lasso Regression, Random Forest Regressor e o XGBoost Regressor. 
+Também foi utilizada a técnica de validação cruzada em Time Series Split para treinar e validar os modelos. Podemos visualizar os resultados abaixo:
+
+#### Resultados dos Modelos de Machine Learning
+| Model Name	| MAE CV	| MAPE CV	| RMSE CV |
+| :---: | :---: | :---: | :---: |
+| Linear Regression |	2081.73 +/- 295.63	| 0.3 +/- 0.02	| 2952.52 +/- 468.37 |
+Lasso	| 2116.38 +/- 341.5	| 0.29 +/- 0.01	| 3057.75 +/- 504.26 |
+Random Forest Regressor	| 836.61 +/- 217.1 |	0.12 +/- 0.02	| 1254.3 +/- 316.17 |
+XGBoost Regressor	| 1039.91 +/- 186.68	| 0.14 +/- 0.02 |	1496.16 +/- 258.53 |
 
 
-##### Resultados dos Modelos
+Podemos notar que os dois modelos de regressão não tiveram boa performance se comparando aos modelos de Random Forest e XGBoost. O algoritmo de Random Forest foi o que apresentou a melhor performance no primeiro momento, mas optamos por seguir com o modelo XGBoost por ele ser mais performático e geralmente produzir resultados superiores utilizando menos recursos de computação em menor período de tempo.
+
+
+#### Modelo Final
+| Model Name	| MAE |	MAPE | RMSE |
+| :---: | :---: | :---: | :---: |
+| XGBoost Regressor |	670.602101	| 0.098162	| 965.036319 |
+
+
+Após processar novamente o modelo do XGBoost nessa etapa realizando o ajuste fino dos hiperparâmetros através da técnica de Random Search (escolha dessa técnica muito alinhada com o método CRISP de terminar o primeiro ciclo do projeto em menor tempo possível e já entregando valor para o negócio).
+
+
+  #### MAE (Mean Absolute Error) - é o erro absoluto médio.
+  
+  Considerando o nosso modelo final, significa que o modelo pode errar em aproximadamente $ 670.6 para cima ou para baixo.
+    
+  #### MAPE (Mean Absolute Percentual Error) - é o erro absoluto médio percentual.
+  
+  Considerando o nosso modelo final, significa que o modelo pode errar em aproximadamente 9.8% o que equivale aos $ 670.6.
+    
+  #### RMSE (Root Mean Squared Error) - é a raiz do erro quadrático médio.
+  
+  Considerando o nosso modelo final, significa que o modelo pode errar em 965 unids.
+    
+&nbsp;
+Abaixo a representação gráfica do resultado:
 
 &nbsp;
+![image](https://user-images.githubusercontent.com/66925229/164121661-7266c21f-ef45-42b0-8fbe-b963b9ec1c88.png)
 
 &nbsp;
+## Resultados das Previsões
 
+| Scenario	| Values |
+| :---: | :---: |
+| predictions	| R$285,331,456.00 |
+| worst_scenario	| R$284,579,721.62 |
+| best_scenario	| R$286,083,187.32 |
 
+Por fim, a tabela acima apresenta a previsão das vendas nas próximas 6 semanas das lojas, além disso considera o melhor e o pior cenário também.
+
+## Produto Final
+
+Como entrega final aos gestores, segue detalhe de ferramenta desenvolvida de BOT no Telegram já disponibilizada em produção (Heroku) para suporte a tomada de decisão.
+
+![20220416_231907](https://user-images.githubusercontent.com/66925229/164127223-18719bfa-c878-4896-a5dc-c479b5d55b1d.png)
+
+&nbsp;
+## Conclusão
+A metodologia de projetos CRISP gera enorme valor aos negócios, pois através do método cíclico de projetos já é possível entregar valor para a empresa em curto espaço de tempo, isso é muito relevante nos dias atuais, considerando a grande competição que existe no mercado independente do ramo de atividade da empresa. 
+
+Apenas como referência ao valor da informação gerada nesse projeto que era de prever as vendas das próximas 6 semanas com o objetivo final de obter o valor de orçamento para reforma das lojas, a informação facilmente poderia ser utilizada para apoiar o setor de Compras na programação e gerenciamento de custo e estoque, apoiar também o time de Marketing para desenvolvimento de campanhas, entre outros.
+
+## Próximos passos
+  - Realizar novo ciclo do CRISP:
+    - Apresentar novas features ao modelo
+    - Gerar mais insigths
+    - Testar outros modelos de ML
+    
 
 
     
