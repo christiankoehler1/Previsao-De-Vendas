@@ -192,7 +192,8 @@ Como entrega final aos gestores, segue detalhe de ferramenta desenvolvida de BOT
 ## Conclusão
 A metodologia de projetos CRISP gera enorme valor aos negócios, pois através do método cíclico de projetos já é possível entregar valor para a empresa em curto espaço de tempo, isso é muito relevante nos dias atuais, considerando a grande competição que existe no mercado independente do ramo de atividade da empresa. 
 
-Apenas como referência ao valor da informação gerada nesse projeto que era de prever as vendas das próximas 6 semanas com o objetivo final de obter o valor de orçamento para reforma das lojas, a informação facilmente poderia ser utilizada para apoiar o setor de Compras na programação e gerenciamento de custo e estoque, apoiar também o time de Marketing para desenvolvimento de campanhas, entre outros.
+Apenas evidenciado o valor da informação gerada nesse projeto, essa informação poderia facilmente ser utilizada, como apoio ao setor de Compras no gerenciamento de custo e estoque, para apoiar também o time de Marketing para desenvolvimento de campanhas, entre outros.
+
 
 ## Próximos passos
   - Realizar novo ciclo do CRISP:
